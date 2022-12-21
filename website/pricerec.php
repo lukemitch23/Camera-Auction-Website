@@ -3,29 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <title>Price recommendation</title>
-        <link rel="stylesheet" href="stylesheet_old.css">
-        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
-        <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+        <link rel="stylesheet" href="searchstylesheet.css">
+        <link rel="stylesheet" href="messagestylesheet.css">
+        <link href="camera.ico" rel="icon" type="image/x-icon" />
     </head>
     <body>
-    <div class="header">
-        <div class="navbar">
-                <a href="home.php">Home</a>
-                <a href="camera_listing.php">Create Listing</a>
-                <a href="register.php">Register</a>
-                <a href="login.php">Login</a>
-                <a href="index.php">Sign out</a>
+        <?php include 'navbar.php'; ?>
+        <div class="homecontent">
+        <div class="messagecontent">
+                <h2>Search</h2>
             </div>
-            <h1>Camera auction site</h1>
-        </div>
-        <div class="content">
-            <h2>Price recommendation</h2>
-            <h4>Enter the camera that you want the recommendation for</h4>
-            <form action="pricerec.php" method="post" enctype="multipart/form-data">
-                <label for="search">Enter the model that you would like:</label>
-                <input type="text" name="search" id="search">
-                <input type="submit" value="Search">
-            </form>
+            <div class="searchform">
+                <form action="pricerec.php" method="post" enctype="multipart/form-data">
+                    <label for="search">Enter the make and model that you would like:</label>
+                    <br>
+                    <input type="text" name="search" id="search">
+                    <div class="submitsearch">
+                        <input type="submit" value="Search">
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>
@@ -48,12 +45,14 @@ If($_POST){
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='listing'>
-                        <br></br>
-                        <h2>Recommended price</h2>
-                        <h3>{$row['make']} {$row['model']}</h3>
-                        <h3>£{$row['recprice']}</3>
-                    </div>";
+                echo "<div class='messagebox'>
+                <div class='fromuser'>
+                    <h3>{$row['make']} {$row['model']}</h3>
+                </div>
+                <div class='usermessage'>
+                    <h3>£{$row['recprice']}</h3>
+                </div>
+            </div>";
             }
         } else {
             echo "<div class='content'>
