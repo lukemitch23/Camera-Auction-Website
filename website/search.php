@@ -3,27 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <title>Search</title>
-        <link rel="stylesheet" href="stylesheet_old.css">
+        <link rel="stylesheet" href="searchstylesheet.css">
+        <link rel="icon" type="image/x-icon" href="camera.ico">
     </head>
     <body>
-    <div class="header">
-        <div class="navbar">
-                <a href="home.php">Home</a>
-                <a href="camera_listing.php">Create Listing</a>
-                <a href="register.php">Register</a>
-                <a href="login.php">Login</a>
-                <a href="index.php">Sign out</a>
+        <?php include 'navbar.php'; ?>
+
+        <div class="homecontent">
+            <div class="messagecontent">
+                <h2>Search</h2>
             </div>
-            <h1>Camera auction site</h1>
-        </div>
-        <div class="content">
-            <h2>Search</h2>
-            <h4>Search for the camera you want</h4>
-            <form action="search.php" method="post" enctype="multipart/form-data">
-                <label for="search">Enter the model that you would like:</label>
-                <input type="text" name="search" id="search">
-                <input type="submit" value="Search">
-            </form>
+            <div class="searchform">
+                <form action="search.php" method="post" enctype="multipart/form-data">
+                    <label for="search">Enter the model that you would like:</label>
+                    <br>
+                    <input type="text" name="search" id="search">
+                    <div class="submitsearch">
+                        <input type="submit" value="Search">
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>
@@ -47,13 +46,24 @@ If($_POST){
                 $interval = $date1->diff($date2);
                 $interval = $interval->format('%R%a days');
                 echo "<div class='listing'>
-                        <h2>{$row['make']} {$row['model']}</h2>
-                        <h3>£{$row['price']}</3>
-                        <p>{$row['description']}</p>
-                        <p>Time left: $interval</p>
-                        <img src='{$row['image']}' alt='{$row['make']} {$row['model']}' height='400' width='500'>
+                <div class='listinginfo'>
+                    <h2>{$row['make']} {$row['model']}</h2>
+                    <br>
+                    <h3>£{$row['price']}</3>
+                    <br>
+                    <p>Time left: $interval</p>
+                    <br>
+                    <p>{$row['description']}</p>
+                    <br>
+                    <div class='viewbutton'>
                         <a href='view_listing.php?listingID={$row['listingID']}'>View</a>
-                    </div>";
+                    </div>
+                </div>
+                <div class='listingimage'>
+                    <img src='{$row['image']}' alt='{$row['make']} {$row['model']}'>
+                    <br>
+                </div>
+            </div>";
             }
         } else {
             echo "<div class='content'>
