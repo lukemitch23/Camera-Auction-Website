@@ -21,7 +21,7 @@ This project was built for my A-level computer science coursework. It is an auct
  4. PHP MySQL connector `$ sudo  apt  install php-mysql`
  5. Python MySQL connector `$ pip install mysql-connector-python`
 ### Getting up and running
- 1. Clone the repository `$ sudo git clone https://github.com/lukemitch23/Coursework.git`
+ 1. Clone the repository `$ sudo git clone https://github.com/lukemitch23/Camera-Auction-Website.git`
  2. Create a MySQL server with a database called 'site' `CREATE DATABASE site;`
  3. Import the database file from the repository to the server using `$ sudo mysql -u root -p site < database.sql`
  4. Move to the most recent version (currently prototype 3)
