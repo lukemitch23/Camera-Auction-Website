@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Camera auction site</title>
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="stylesheet_old.css">
     </head>
     <body>
         <div class="header">
@@ -42,15 +42,28 @@
 <?php
 session_start();
 include 'db_connect.php';
+
 If($_POST){
-    $sql = "INSERT INTO listings (make, model, price, description, end_date, image, postowner) VALUES ('{$_POST['make']}', '{$_POST['model']}', '{$_POST['price']}', '{$_POST['description']}', '{$_POST['end_date']}', '{$_FILES['image']['name']}', '{$_SESSION['username']}')";
-    if (mysqli_query($link, $sql)) {
-        $uploaddir = '/images';
-        $uploadfile = $uploaddir . basename($_FILES['image']['name']);
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
-            echo "File is valid, and was successfully uploaded.\n";
-        } else {
-            echo "Upload failed";
+    if ($_POST['make'] == "" or $_POST['model'] == "" or $_POST['price'] == "" or $_POST['description'] == "" or $_POST['end_date'] == ""){
+        echo "<div class='content'>
+                <h2> </h2>
+                <h2>One or more fields are empty</h2>
+            </div>";
+    } else {
+        $image = $_FILES['image']['name'];
+        $image_tmp = $_FILES['image']['tmp_name'];
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $image_path = 'images/' . uniqid() . '.' . $image_ext;
+        $sql = "INSERT INTO listings (make, model, price, description, end_date, image, postowner) VALUES ('{$_POST['make']}', '{$_POST['model']}', 
+            '{$_POST['price']}', '{$_POST['description']}', '{$_POST['end_date']}', '{$image_path}', '{$_SESSION['username']}')";
+        if (mysqli_query($link, $sql)) {
+            if (move_uploaded_file($image_tmp, $image_path)) {
+                echo "File is valid, and was successfully uploaded. Your listing has been created.\n";
+                $command = escapeshellcmd('./gitupdate.sh');
+                $output = shell_exec($command);
+            } else {
+                echo "Upload failed";
+            }
         }
     }
 }

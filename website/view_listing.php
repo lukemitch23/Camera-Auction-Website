@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Retrieved Listing</title>
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="stylesheet_old.css">
     </head>
     <body>
         <div class="header">
@@ -37,7 +37,7 @@ if (mysqli_num_rows($result) > 0) {
                 <h3>£{$row['price']}</3>
                 <p>{$row['description']}</p>
                 <p>Time left: $new_interval</p>
-                <img src='images/{$row['image']}' alt='{$row['make']} {$row['model']}'>
+                <img src='{$row['image']}' alt='{$row['make']} {$row['model']}' height='400' width='500'>
             </div>";
     $sql2 = "SELECT * FROM cameras WHERE Brand = '{$row['make']}' AND Model = '{$row['model']}'";
     $result2 = mysqli_query($link, $sql2);
@@ -55,23 +55,32 @@ if (mysqli_num_rows($result) > 0) {
             </form>";
         $userID = $_SESSION['userID'];
         $ownerID = $row['userID'];
-        if ($_POST['bid'] > $row['price']) {
-            $sql = "UPDATE listings SET price = {$_POST['bid']} WHERE listingID = {$row['listingID']}";
-            if (mysqli_query($link, $sql)) {
-                echo "<br></br>";
-                echo "Bid successful, it may not show until the page is refreshed";
-                header("Refresh:0");
+        If($_POST){
+            if ($_POST['bid'] == " "){
+                echo "<div class='content'>
+                        <h2> </h2>
+                        <h2>No bid entered</h2>
+                    </div>"; 
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($link);
+                if ($_POST['bid'] > $row['price']) {
+                    $sql = "UPDATE listings SET price = {$_POST['bid']} WHERE listingID = {$row['listingID']}";
+                    if (mysqli_query($link, $sql)) {
+                        echo "<br></br>";
+                        echo "Bid successful, it may not show until the page is refreshed";
+                        header("Refresh:0");
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($link);
+                    }
+                }
+                else {
+                    echo "The bid was not enough";
+                }
+            
             }
         }
-        else {
-            echo "The bid was not enough";
-        }
-    } else {
-        echo "<p>This listing has ended</p>";
-        }
     }
+    }
+
 }
 ?>
 
