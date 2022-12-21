@@ -28,9 +28,9 @@ This project was built for my A-level computer science coursework. It is an auct
  5. Start PHP server `$ sudo php -S localhost:8000 -t Coursework/'prototype 3'`
  6. Open `localhost:8000` in browser and happy selling!
 
-## Project Issues
-This project still in early development and so is likely to contain bugs and large errors. If you find an error please submit an issue with the following parameters:
-
+## Contributing
+### This project still in early development and so is likely to contain bugs and large errors. You can see that latest developments on the testing branch.
+If you find an error please submit an issue with the following parameters:
  - Issue outline
  - Was the error website breaking or still usable
  - Usage leading to error
