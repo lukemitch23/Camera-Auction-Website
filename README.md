@@ -1,6 +1,6 @@
 # Camera Auction Website 📷
 ##  An auction website built in PHP designed to allow the user to buy and sell camera gear
-![enter image description here](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)	![enter image description here](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue) 	![mysqlimage](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![enter image description here](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)	![enter image description here](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue) 	![mysqlimage](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) [![GitHub release](https://img.shields.io/github/release/kubernetes/website.svg)](https://https://github.com/lukemitch23/Camera-Auction-Website/releases/latest)
 
 This project was built for my A-level computer science coursework. It is an auction website that will allow the user to buy and sell camera gear on the platform. Built using PHP, python and MySQL, the webpage includes many features including: 
 
