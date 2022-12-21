@@ -3,23 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <title>Camera auction site</title>
-        <link rel="stylesheet" href="indexstylesheet.css">
-        <link rel="icon" type="image/x-icon" href="camera.ico">
+        <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body>
-        <div class="indexcontent">
-            <h1>Camera auction website</h1>
-            <h2>Welcome to the camera auction website!</h2>
-            <p>Welcome to your one stop destination for all things camera equipment. Here you can sell your old equipment you no longer use or perhaps upgrade to the latest and greatest</p>
-            <break></break>
-            <break></break>
-            <button type="button" onclick="location.href='login.php'">Login</button>
-            <button type="button" onclick="location.href='register.php'">Register</button>
-        </div>
+        <h1>Camera auction site</h1>
+        <h2>Welcome to the camera auction site, please login to coninue.</h2>
+        <h3>If you don't have an account, please register.</h3>
+        <p>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        </p>
     </body>
 </html>
 
 <?php
-session_start();
-$_SESSION['username'] = "";
+include 'db_connect.php';
+$sql = "SELECT * FROM listings WHERE end_date < CURRENT_DATE()";
+$result = mysqli_query($link, $sql);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        unlink('images/' . $row['image']);
+        $sql = "INSERT INTO sold (make, model, price) VALUES ('{$row['make']}', '{$row['model']}', '{$row['price']}')";
+        mysqli_query($link, $sql);
+        $sql = "DELETE FROM listings WHERE listingID = {$row['listingID']}";
+        mysqli_query($link, $sql);
+    }
+}
 ?>

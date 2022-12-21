@@ -2,55 +2,30 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>CAW | Buy and sell gear</title>
+        <title>Camera auction site</title>
         <link rel="stylesheet" href="stylesheet.css">
-        <link rel="icon" type="image/x-icon" href="camera.ico">
+        <!--link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     </head>
     <body>
-        <?php include 'navbar.php'; ?>
-        <div class="homecontent">
-            <div class="messagecontent">
-                <h2>Home</h2>
-                <p>Welcome to the home page, here you can navigate to any of the sites functions</p>
+        <div class="header">
+            <div class="navbar">
+                <a href="home.php">Home</a>
+                <a href="search.php">Search</a>
+                <a href="camera_listing.php">Create Listing</a>
+                <a href="register.php">Register</a>
+                <a href="login.php">Login</a>
+                <a href="index.php">Sign out</a>
             </div>
-            <div class="leftbanner">
-                <button onclick="location.href='camera_listing.php'">
-                    <h2>Get started with selling your camera gear and create a listing</h2>
-                    <div class="mainimage">
-                        <img src="banner1.jpeg" alt="camera">
-                    </div>
-                </button>
-            </div>
-
-            <div class="righttop">
-                <button onclick="location.href='search.php'"> 
-                <h2>Your next camera is just a search away</h2>
-                <span class="icon arrow"></span>
-                <div class="rightimage">
-                    <img src="banner2.jpeg" alt="camera">
-                </div>
-                </button>
-            </div>
-
-            <div class="bottomleft">
-                <button onclick="location.href='pricerec.php'"> 
-                    <h2>Price quote</h2>
-                    <span class="icon arrow"></span>
-                    <div class="bottomleftimage">
-                        <img src="banner3.jpeg" alt="camera">
-                    </div>
-                </button>
-            </div>
-
-            <div class="bottomright">
-                <button onclick="location.href='messages.php'"> 
-                    <h2>Messages</h2>
-                    <span class="icon arrow"></span>
-                    <div class="bottomrightimage">
-                        <img src="banner4.jpeg" alt="camera">
-                    </div>
-                </button>
-            </div>
+            <br><br>
+            <break>
+            <h1>Camera auction site</h1>
+        </div>
+        <div class="content">
+            <h2>Home</h2>
+            <p>Welcome to the camera auction site, here you can view and bid on cameras</p>
+            <button onclick="location.href='search.php'">Search a listing</button>
+            <button onclick="location.href='camera_listing.php'">Create a listing</button>
         </div>
     </body>
 </html>
@@ -62,13 +37,22 @@ $result = mysqli_query($link, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $listing_id = $row['listingID'];
+        echo $listing_id;
+        /*
+        $sql = "SELECT * FROM users WHERE userID = {$row['userID']}";
+        $result2 = mysqli_query($link, $sql);
+        $row2 = mysqli_fetch_assoc($result2);
+        $to = $row2['email'];
+        $subject = "You've won a listing";
+        $message = "You've won a listing on the camera auction site. Please visit the website to view the listing.";
+        $headers = "From:
+        " . $to;
+        mail($to, $subject, $message, $headers); */
         $sql = "DELETE FROM listings WHERE listingID = {$row['listingID']}";
-        unlink($row['image']);
+        unlink('images/' . $row['image']);
         mysqli_query($link, $sql);
         $sql = "INSERT INTO sold (make, model, price) VALUES ('{$row['make']}', '{$row['model']}', '{$row['price']}')";
         mysqli_query($link, $sql);
     }
 }
 ?>
-
-

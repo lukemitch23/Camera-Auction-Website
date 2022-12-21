@@ -1,283 +1,134 @@
-.homecontent {
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    position: relative;
+html {
+    scroll-behavior: smooth;
 }
 
-.leftbanner {
-    width: 50%;
-    margin-top: 50px;
-    position: relative;
-    height: 450px;
-    float: left !important;
-    border-radius: 44px;
-    background: #e0e0e0;
-    box-shadow:  -41px 41px 82px #b5b5b5,
-                41px -41px 82px #ffffff;
-    margin-right: 50px !important;
-    margin-left: 50px;
-}
-
-.leftbanner h2 {
-    font-size: 2em !important;
-    width: 60%;
-    color: white;
-    background: none;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px !important;
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(110, 110, 110);
     text-align: center;
+    padding: 10px;
+    width: 100%;
 }
 
-.leftbanner button {
-    border: 44px;
-    background: none;
-    padding: 0px !important;
-    cursor: pointer;
-    width: 100%;
-    float: right;
-    padding-right: 50px;
+body{
+    background-color: #f2f2f2;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+a {
+    color: blue;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input {
+    border-radius: 5px;
+    border-color: #ccc;
+    box-shadow: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    padding: 0%;
     overflow: hidden;
-    border-radius: 44px;
+    background-color: rgb(110, 110, 110);
+    position: fixed;
+    top: 0;
+    width: 120%;
+    padding-bottom: 10px;
+    align-items: left;
 }
 
-.mainimage {
-    float: right;
-    height: 450px;
-    width: 100%;
-    border-radius: 44px;
-    padding-top: 0% !important;
-    background: linear-gradient(270deg, rgba(2,0,36,0.5) 0%, rgba(9,9,121,0.5) 35%, rgba(0,212,255,0.5) 100%), url('banner1.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position-y: 300px;
-    background-size: 1200px;
-}
-
-.mainimage img {
-    height: 400px;
-    border-radius: 44px;
-    opacity: 0;
-}
-
-.righttop {
-    width: 40%;
-    margin-top: 50px;
-    position: relative;
-    height: 200px;
-    float: right !important;
-    border-radius: 44px;
-    background: #e0e0e0;
-    box-shadow:  -41px 41px 82px #b5b5b5,
-                41px -41px 82px #ffffff;
-    margin-right: 50px !important;
-}
-
-.righttop h2 {
-    font-size: 2em !important;
-    width: 60%;
+.navbar a {
+    font-size: 1.5rem;
     color: white;
-    background: none;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px !important;
     text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
-.righttop button {
-    border: 44px;
-    background: none;
-    padding: 0px !important;
-    cursor: pointer;
-    width: 100%;
-    float: right;
-    padding-right: 50px;
-    overflow: hidden;
-    border-radius: 44px;
-}
-
-.rightimage {
-    height: 200px;
-    background: linear-gradient(270deg, rgba(2,0,36,0.5) 0%, rgba(9,9,121,0.5) 35%, rgba(0,212,255,0.5) 100%), url('banner2.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    border-radius: 44px;
-    background-position: 0%;
-    background-size: cover;
-    width: 100%;
-    margin-right: 50px !important;
-    background-position-y: -50px;
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
 
-.rightimage img {
-    height: 500px;
-    border-radius: 44px;
-    opacity: 0;
+.content {
+    margin-left: 10%;
+    padding: 1px 16px;
 }
 
-.bottomleft {
-    width: 18%;
-    margin-top: 50px;
-    position: relative;
-    height: 200px;
-    float: left !important;
-    border-radius: 44px;
-    background: #e0e0e0;
-    box-shadow:  -41px 41px 82px #b5b5b5,
-                41px -41px 82px #ffffff;
-    margin-right: 10px !important;
-    margin-left: 20px;
-}
-
-.bottomleft h2 {
-    font-size: 2em !important;
-    width: 60%;
+.header {
+    background-color: rgb(110, 110, 110);
     color: white;
-    background: none;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px !important;
-    text-align: center !important;
-}
-
-.bottomleft button {
-    border: 44px;
-    background: none;
-    padding: 0px !important;
-    cursor: pointer;
     width: 100%;
-    float: right;
-    padding-right: 50px;
-    overflow: hidden;
+    padding: 0px;
+    padding-right: 10px;
 }
 
-.bottomleftimage {
-    height: 200px;
-    background: linear-gradient(270deg, rgba(2,0,36,0.5) 0%, rgba(9,9,121,0.5) 35%, rgba(0,212,255,0.5) 100%), url('banner3.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    border-radius: 44px;
-    background-position: 0%;
-    background-size: contain;
-    width: 100%;
-    margin-right: 50px !important;
-}
-
-
-.bottomleftimage img {
-    height: 500px;
-    border-radius: 44px;
-    opacity: 0;
-}
-
-.bottomright {
-    width: 18%;
-    margin-top: 50px;
-    position: relative;
-    height: 200px;
-    float: right !important;
-    border-radius: 44px;
-    background: #e0e0e0;
-    box-shadow:  -41px 41px 82px #b5b5b5,
-                41px -41px 82px #ffffff;
-    margin-right: 50px !important;
-    margin-left: 0px !important;
-}
-
-.bottomright h2 {
-    font-size: 2em !important;
-    width: 60%;
-    color: white;
-    background: none;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px !important;
-    text-align: center !important;
-}
-
-.bottomright button {
-    border: 44px;
-    background: none;
-    padding: 0px !important;
-    cursor: pointer;
-    width: 100%;
-    float: right;
-    padding-right: 50px;
-    overflow: hidden;
-}
-
-.bottomrightimage {
-    height: 200px;
-    background: linear-gradient(270deg, rgba(2,0,36,0.5) 0%, rgba(9,9,121,0.5) 35%, rgba(0,212,255,0.5) 100%), url('banner4.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    border-radius: 44px;
-    background-position: 0;
-    background-size: 100%;
-    background-position-x: 500px;
-    width: 100%;
-    margin-right: 50px !important;
-}
-
-
-.bottomrightimage img {
-    height: 500px;
-    border-radius: 44px;
-    opacity: 0;
-}
-
-.messagecontent h2 {
-    text-align: center;
-    font-size: 50px;
-    font-weight: 700;
-    color: #000000;
-    padding: 0;
-    margin: 0;
-    margin-top: 75px;
-    margin-bottom: 30px;
-}
-
-.messagecontent p {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    color: #000000;
-}
-
-.homebuttons button {
-    padding: 1.3em 3em;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    font-weight: 500;
-    color: #000;
-    background-color: #fff;
+button {
+    background-color: #808080;
     border: none;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px 5px;
     cursor: pointer;
-    outline: none;
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
 }
-
-.homebuttons button:hover{
-    background-color: #23c483;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
-}
-
-.homebuttons button:active{
-    transform: translateY(-1px);
-}
-
-
-
