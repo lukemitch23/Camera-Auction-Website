@@ -18,7 +18,7 @@
     $encrypted_cvc = sodium_crypto_secretbox($cvc, $encfunc, $key);
     $encrypted_expiry = sodium_crypto_secretbox($expiry, $encfunc, $key);
     $encoded = base64_encode( $encfunc . $encrypted_uname . $encrypted_psswd . $encrypted_email . $encrypted_cardnumber . $encrypted_cvc . $encrypted_expiry . $key );
-
+    echo $key;
     if ($uname == "" or $psswd == "" or $email == "" or $cardnumber == "" or $cvc == "" or $expiry == "") {
         echo "<div class='content'>
                 <h2> </h2>
