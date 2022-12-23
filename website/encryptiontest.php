@@ -18,7 +18,7 @@ session_start();
 include 'db_connect.php';
 
 if($_POST){
-    $userstring = $_POST['string'];
+    $simple_string = $_POST['string'];
     echo "Original String: " . $simple_string;
     $ciphering = "AES-128-CTR";
     $iv_length = openssl_cipher_iv_length($ciphering);
