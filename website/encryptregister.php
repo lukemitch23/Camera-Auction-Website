@@ -31,12 +31,13 @@
             if (mysqli_num_rows($result) > 0) {
                 echo "User already exists";
             } else {
-                $sql = "INSERT INTO users (username, password, email, cardnumber, cvc, expire, key) VALUES ('" . $encrypted_uname . "', '" . $encrypted_psswd . "', '" . $encrypted_email . "', '" . $encrypted_cardnumber . "', '" . $encrypted_cvc . "', '" . $encrypted_expiry . "', '" . $key . "')";
+                $sql = "INSERT INTO users (username, password, email, cardnumber, cvc, expire, enckey) VALUES ('" . $encrypted_uname . "', '" . $encrypted_psswd . "', '" . $encrypted_email . "', '" . $encrypted_cardnumber . "', '" . $encrypted_cvc . "', '" . $encrypted_expiry . "', '" . $key . "')";
                 if (mysqli_query($link, $sql)) {
                     echo "<div class='content'>
                             <h2> </h2>
                             <h2>Registration successful</h2>
                         </div>";
+                header("Location: login.php");
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($link);
                 }
