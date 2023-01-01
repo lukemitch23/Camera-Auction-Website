@@ -50,7 +50,6 @@
                             <h2> </h2>
                             <h2>Registration successful</h2>
                         </div>";
-                header("Location: login.php");
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($link);
                 }
@@ -63,3 +62,13 @@
         }
     }
 ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <link rel="stylesheet" href="indexstylesheet.css">
+    </head>
+    <body>
+        <div class="spinner"></div> 
+    </body>
