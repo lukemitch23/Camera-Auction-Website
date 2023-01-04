@@ -10,5 +10,3 @@ if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 ?>
-
-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
