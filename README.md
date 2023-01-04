@@ -14,7 +14,7 @@ This project was built for my A-level computer science coursework. It is an auct
 ### Requirements
 
  1. MySQL server (see database file)
-	 - [For help with this follow this link](https://pimylifeup.com/raspberry-pi-mysql/) 
+	 - [For help with this, follow this link](https://pimylifeup.com/raspberry-pi-mysql/) 
 	 - Database should have an account with username  `server` and password `server123`
  2. PHP version 8 `$ sudo apt install php`
  3. Python version 3.8 `$ sudo apt install python3.8`
