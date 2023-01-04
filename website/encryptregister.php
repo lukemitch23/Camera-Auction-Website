@@ -13,8 +13,7 @@
     $iv_length = openssl_cipher_iv_length($ciphering);
     $options = 0;
     $encryption_iv = '1234567891011121';
-    $command = escapeshellcmd("python3 randomnum.py");
-    $encryption_key = shell_exec($command);
+    $encryption_key = '715655524310713512439317';
     $encrypted_uname = openssl_encrypt($uname, $ciphering,
             $encryption_key, $options, $encryption_iv);
     $encrypted_psswd = openssl_encrypt($psswd, $ciphering,
@@ -39,22 +38,31 @@
             </div>";
     } else {
         if (($cardnumber > 1000000000000000) && ($cardnumber < 9999999999999999) && ($cvc > 100) && ($cvc < 999)) {
-            $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "'";
-            $result = mysqli_query($link, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                echo "User already exists";
-            } else {
-                $sql = "INSERT INTO users (username, password, email, cardnumber, cvc, expire, enckey) VALUES ('" . $encrypted_uname . "', '" . $encrypted_psswd . "', '" . $encrypted_email . "', '" . $encrypted_cardnumber . "', '" . $encrypted_cvc . "', '" . $encrypted_expiry . "', '" . $key . "')";
-                if (mysqli_query($link, $sql)) {
+                $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "' OR email = '" . $encrypted_email . "' OR cardnumber = '" . $encrypted_cardnumber . "' OR cvc = '" . $encrypted_cvc . "'";
+                $result = mysqli_query($link, $sql);
+                if (mysqli_num_rows($result) > 0) {
                     echo "<div class='content'>
                             <h2> </h2>
-                            <h2>Registration successful</h2>
+                            <h2>User already exists</h2>
                         </div>";
-                    header("Location: home.php");
                 } else {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($link);
+                        $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "'";
+                        $result = mysqli_query($link, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                                echo "User already exists";
+                        } else {
+                                $sql = "INSERT INTO users (username, password, email, cardnumber, cvc, expire, enckey) VALUES ('" . $encrypted_uname . "', '" . $encrypted_psswd . "', '" . $encrypted_email . "', '" . $encrypted_cardnumber . "', '" . $encrypted_cvc . "', '" . $encrypted_expiry . "', '" . $key . "')";
+                                if (mysqli_query($link, $sql)) {
+                                echo "<div class='content'>
+                                        <h2> </h2>
+                                        <h2>Registration successful</h2>
+                                        </div>";
+                                header("Location: home.php");
+                                } else {
+                                echo "Error: " . $sql . "<br>" . mysqli_error($link);
+                                }
+                        }
                 }
-            }
         } else {
             echo "<div class='content'>
                     <h2> </h2>
