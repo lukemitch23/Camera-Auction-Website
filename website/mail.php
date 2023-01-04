@@ -1,5 +1,4 @@
 <?php
-require 'class.phpmailer.php';
  
 $yahoo_mail = new PHPMailer;
  
