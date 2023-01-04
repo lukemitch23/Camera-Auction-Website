@@ -12,7 +12,7 @@
             <break></break>
             <break></break>
             <div class="loginform">
-                <form action="login.php" method="post">
+                <form action="encryptlogin.php" method="post">
                     <label for="username">Username:</label>
                     <br>
                     <input type="text" name="uname" id="uname">
