@@ -1,4 +1,7 @@
 <?php
+session_start();
+include 'db_connect.php';
+
 $uname = $_POST['uname'];
 $psswd = $_POST['psswd'];
 
