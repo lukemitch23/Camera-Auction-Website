@@ -6,7 +6,28 @@ def randompass():
     import string
     letters = string.ascii_letters
     result_str = ''.join(random.choice(letters) for i in range(16))
-    return result_str
+    import base64
+    from Crypto.Cipher import AES
+
+    ciphering = "AES-128-CTR"
+    iv_length = 16
+    options = 0
+    encryption_iv = b'1234567891011121'
+    encryption_key = b'715655524310713512439317'
+
+    # pad the plaintext to a multiple of 16 bytes
+    plaintext = result_str.encode()
+    padding_length = 16 - (len(plaintext) % 16)
+    plaintext += b' ' * padding_length
+
+    # create the cipher object and encrypt the plaintext
+    cipher = AES.new(encryption_key, AES.MODE_CTR, encryption_iv)
+    encryptor = cipher.encryptor()
+    encrypted_uname = encryptor.update(plaintext) + encryptor.finalize()
+
+    # encode the encrypted message in base64
+    encrypted_uname = base64.b64encode(encrypted_uname)
+    return encrypted_uname
 
 def updatepassword(username, password):
     import mysql.connector
