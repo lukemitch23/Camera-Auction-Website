@@ -52,7 +52,7 @@ If($_POST){
             $email = openssl_decrypt($email, $ciphering,
                     $encryption_key, $options, $encryption_iv);
             if($email == $_POST['email']){
-                $command = escapeshellcmd('python3 /var/www/html/website/sendemail.py ' . $email . ' ' . $uname);
+                $command = escapeshellcmd('python3 sendemail.py ' . $email . ' ' . $uname);
                 $output = shell_exec($command);
                 echo "Email has been sent";
             } else {
