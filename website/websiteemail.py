@@ -6,8 +6,7 @@ def randompass():
     import string
     letters = string.ascii_letters
     result_str = ''.join(random.choice(letters) for i in range(16))
-    import base64
-    from Crypto.Cipher import AES
+    from Cryptodome.Cipher import AES
 
     ciphering = "AES-128-CTR"
     iv_length = 16
@@ -22,11 +21,7 @@ def randompass():
 
     # create the cipher object and encrypt the plaintext
     cipher = AES.new(encryption_key, AES.MODE_CTR, encryption_iv)
-    encryptor = cipher.encryptor()
-    encrypted_uname = encryptor.update(plaintext) + encryptor.finalize()
-
-    # encode the encrypted message in base64
-    encrypted_uname = base64.b64encode(encrypted_uname)
+    encrypted_uname = cipher.encrypt(plaintext)
     return encrypted_uname
 
 def updatepassword(username, password):
