@@ -24,6 +24,7 @@
                     <input type="submit" value="Login">
                 </form>
             </div>
+            <button onclick="window.location.href='forgotpassword.php'">Forgot password</button>
         </div>
     </body>
 </html>
