@@ -1,6 +1,6 @@
 import smtplib
 import sys
-from Cryptodome import *
+import Cryptodome 
 from Cryptodome.Cipher import AES
 
 def randompass():
