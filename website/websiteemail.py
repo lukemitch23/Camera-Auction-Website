@@ -6,7 +6,7 @@ def randompass():
     import string
     letters = string.ascii_letters
     result_str = ''.join(random.choice(letters) for i in range(16))
-    from Cryptodome.Cipher import AES
+    from Cryptodome.Cipher import AES 
 
     ciphering = "AES-128-CTR"
     iv_length = 16
