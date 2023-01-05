@@ -49,11 +49,12 @@ If($_POST){
         } else {
             $row = mysqli_fetch_assoc($result);
             $email = $row['email'];
-            $email = openssl_decrypt($email, $ciphering,
+            $decyptemail = openssl_decrypt($email, $ciphering,
                     $encryption_key, $options, $encryption_iv);
-            if($email == $_POST['email']){
+            if($decryptemail == $_POST['email']){
                 $command = escapeshellcmd('python3 websiteemail.py ' . $email . ' ' . $uname);
                 $output = shell_exec($command);
+                echo $output;
                 echo "Email has been sent";
             } else {
                 echo "Email is incorrect";
