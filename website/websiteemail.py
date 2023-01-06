@@ -1,30 +1,24 @@
 import smtplib
 import sys
-import Cryptodome 
-from Cryptodome.Cipher import AES
+import os
+import subprocess
 
 def randompass():
     import random
     import string
     letters = string.ascii_letters
     result_str = ''.join(random.choice(letters) for i in range(16))
-
-
-    ciphering = "AES-128-CTR"
-    iv_length = 16
-    options = 0
-    encryption_iv = b'1234567891011121'
-    encryption_key = b'715655524310713512439317'
-
-    # pad the plaintext to a multiple of 16 bytes
-    plaintext = result_str.encode()
-    padding_length = 16 - (len(plaintext) % 16)
-    plaintext += b' ' * padding_length
-
-    # create the cipher object and encrypt the plaintext
-    cipher = AES.new(encryption_key, AES.MODE_CTR, encryption_iv)
-    encrypted_uname = cipher.encrypt(plaintext)
-    return encrypted_uname
+    key = '715655524310713512439317'
+    plain_text_file = 'plain_text.txt'
+    with open(plain_text_file, 'w') as f:
+        f.write(result_str)
+    encrypted_text_file = 'encrypted_text.txt'
+    subprocess.call(['openssl', 'enc', '-e', '-aes-256-cbc', '-in', plain_text_file, '-out', encrypted_text_file, '-k', key, '-a', '-md', 'md5', '-nosalt'])
+    with open(encrypted_text_file, 'r') as f:
+        encrypted_text = f.read()
+    os.remove(plain_text_file)
+    os.remove(encrypted_text_file)
+    return encrypted_text
 
 def updatepassword(username, password):
     import mysql.connector
@@ -49,7 +43,7 @@ def send_email(to, username):
 
         smtp.login('cameraauctionwebsite@gmail.com' ,'xrvkyxrmvhsufnzj')
         subject = 'One Time Password'
-        body = ('Your one time password is ' + password + ' \n Please enter this into the website to continue. \n If you did not request this password please ignore this email. \n Thank you very much,\n Luke')
+        body = ('Your one time password is ' + password + ' \n Please enter this into the website to continue. \n If you did not request this password please ignore this email. \n Thank you very much,\n Camera Auction Website Team')
         footer = ('This email was sent by Camera Auction Website. \n If you have any questions please contact us at cameraauctionwebsite@gmail.com')
         msg = f'Subject: {subject}\n\n{body}\n\n{footer}'
 
