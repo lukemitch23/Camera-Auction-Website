@@ -25,7 +25,7 @@ This project was built for my A-level computer science coursework. It is an auct
  2. Create a MySQL server with a database called 'site' `CREATE DATABASE site;`
  3. Import the database file from the repository to the server using `$ sudo mysql -u root -p site < database.sql`
  4. Move to the most recent version (currently prototype 3)
- 5. Start PHP server `$ sudo php -S localhost:8000 -t Camera-Auction-Website/website`
+ 5. Start PHP server from inside the repository folder `$ sudo php -S localhost:8000 -t website`
  6. Open `localhost:8000` in browser and happy selling!
 
 ## Contributing
