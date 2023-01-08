@@ -52,7 +52,7 @@ If($_POST){
             $decryptemail = openssl_decrypt($email, $ciphering,
                     $encryption_key, $options, $encryption_iv);
             if($decryptemail == $_POST['email']){
-                $command = escapeshellcmd('python3 websiteemail.py ' . $decryptemail . ' ' . $uname);
+                $command = escapeshellcmd('python3 forgotpassword.py ' . $decryptemail . ' ' . $uname);
                 $output = shell_exec($command);
                 echo $output;
                 echo "Email has been sent";
