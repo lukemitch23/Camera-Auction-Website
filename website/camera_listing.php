@@ -70,7 +70,7 @@ If($_POST){
                 $sql = "INSERT INTO listings (make, model, price, description, end_date, image, postowner) VALUES ('{$_POST['make']}', '{$_POST['model']}', 
                 '{$_POST['price']}', '{$_POST['description']}', '{$_POST['end_date']}', '{$image_path}', '{$_SESSION['username']}')";
                 if (mysqli_query($link, $sql)) {
-                    if (move_uploaded_file($image_tmp, $image_path)) {
+                    if (copy($image_tmp, $image_path)) {
                         echo "File is valid, and was successfully uploaded. Your listing has been created.\n";
                         $command = escapeshellcmd('./gitupdate.sh');
                         $output = shell_exec($command);
