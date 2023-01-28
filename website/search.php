@@ -51,7 +51,7 @@ If($_POST){
                     <br>
                     <h3>£{$row['price']}</3>
                     <br>
-                    <p>Time left: $interval</p>
+                    <p>Time left: $new_interval</p>
                     <br>
                     <p>{$row['description']}</p>
                     <br>
