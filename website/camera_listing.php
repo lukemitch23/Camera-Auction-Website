@@ -62,7 +62,9 @@ If($_POST){
     } else {
         if (is_numeric($_POST['price'])){
             $image = $_FILES['image']['name'];
+            shell_exec("echo 'Image name: $image'");
             $image_tmp = $_FILES['image']['tmp_name'];
+            shell_exec("echo 'Image name: $image_tmp'");
             $image_ext = pathinfo($image, PATHINFO_EXTENSION);
             ## check that the image extension is valid
             if ($image_ext == "jpg" or $image_ext == "jpeg" or $image_ext == "png"){
@@ -70,7 +72,7 @@ If($_POST){
                 $sql = "INSERT INTO listings (make, model, price, description, end_date, image, postowner) VALUES ('{$_POST['make']}', '{$_POST['model']}', 
                 '{$_POST['price']}', '{$_POST['description']}', '{$_POST['end_date']}', '{$image_path}', '{$_SESSION['username']}')";
                 if (mysqli_query($link, $sql)) {
-                    if (copy($image_tmp, $image_path)) {
+                    if (move_uploaded_file($image_tmp, $image_path)) {
                         echo "File is valid, and was successfully uploaded. Your listing has been created.\n";
                         $command = escapeshellcmd('./gitupdate.sh');
                         $output = shell_exec($command);
