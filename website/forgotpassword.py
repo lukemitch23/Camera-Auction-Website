@@ -35,6 +35,7 @@ def updatepassword(username, password):
 
 def send_email(to, username):
     password = randompass()
+    print(password)
     updatepassword(username, password)
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()

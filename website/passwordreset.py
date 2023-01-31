@@ -16,7 +16,6 @@ def decrypt(username):
         username = f.read()
     os.remove(plain_text_file)
     os.remove(encrypted_text_file)
-    print(username)
 
 
 def listinginfo(listingid):
@@ -40,7 +39,8 @@ def send_email(make,model,price,username,to):
         smtp.ehlo()
         smtp.starttls()
         smtp.ehlo()
-
+        password = generatepassword()
+        print(password)
         smtp.login('cameraauctionwebsite@gmail.com' ,'xrvkyxrmvhsufnzj')
         subject = 'One Time Password'
         body = ('Your one time password is ' + password + ' \n Please enter this into the website to continue. \n If you did not request this password please ignore this email. \n Thank you very much,\n Camera Auction Website Team')
@@ -48,6 +48,11 @@ def send_email(make,model,price,username,to):
         msg = f'Subject: {subject}\n\n{body}\n\n{footer}'
 
         smtp.sendmail('cameraauctionwebsite@gmail.com', to, msg)
-    print("Mail sent")
+
+def generatepassword():
+    import random
+    import string
+    password = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(10))
+    return password
 
 decrypt(sys.argv[1])
