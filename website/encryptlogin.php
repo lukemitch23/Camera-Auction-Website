@@ -5,6 +5,11 @@ include 'db_connect.php';
 $uname = $_POST['uname'];
 $psswd = $_POST['psswd'];
 
+echo $uname;
+echo $psswd;
+
+echo "Holding space...        ";
+
 if(($uname == "") or ($psswd == "")){
     echo "One or more fields are empty";
 } else {
