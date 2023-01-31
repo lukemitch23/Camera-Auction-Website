@@ -8,7 +8,8 @@ def randompass():
     import string
     global result_str
     letters = string.ascii_letters
-    result_str = ''.join(random.choice(letters) for i in range(16))
+    # result_str = ''.join(random.choice(letters) for i in range(16))
+    result_str = 'HelloWorld'
     key = '715655524310713512439317'
     plain_text_file = 'plain_text.txt'
     with open(plain_text_file, 'w') as f:
@@ -34,14 +35,13 @@ def updatepassword(username, password):
     db.commit()
     db.close()
 
-def send_email(to, username):
+def send_email(to, username, encusername):
     password = randompass()
-    print(password)
+    updatepassword(encusername, password)
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
         smtp.starttls()
         smtp.ehlo()
-
         smtp.login('cameraauctionwebsite@gmail.com' ,'xrvkyxrmvhsufnzj')
         subject = 'One Time Password'
         body = ('Your one time password is ' + result_str + ' \n Please enter this into the website to continue. \n If you did not request this password please ignore this email. \n Thank you very much,\n Camera Auction Website Team')
@@ -50,6 +50,6 @@ def send_email(to, username):
 
         smtp.sendmail('cameraauctionwebsite@gmail.com', to, msg)
 
-send_email(sys.argv[1], sys.argv[2])
+send_email(sys.argv[1], sys.argv[2], sys.argv[3])
 
 
