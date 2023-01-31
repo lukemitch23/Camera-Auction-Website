@@ -4,7 +4,7 @@ class Recovery{
     public function new_password() {
         $new_password = bin2hex(random_bytes(8));
         echo $new_password;
-        return $new_password;
+        return "helloworld";
     }
 
     public function encrypt_password($new_password) {
