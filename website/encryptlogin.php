@@ -17,7 +17,7 @@ if(($uname == "") or ($psswd == "")){
     $iv_length = openssl_cipher_iv_length($ciphering);
     $options = 0;
     $encryption_iv = '1234567891011121';
-    $encryption_key = '715655524310713512439317';
+    $encryption_key = '123';
     $encrypted_uname = openssl_encrypt($uname, $ciphering,
             $encryption_key, $options, $encryption_iv);
     $encrypted_psswd = openssl_encrypt($psswd, $ciphering,
@@ -29,7 +29,6 @@ if(($uname == "") or ($psswd == "")){
 
     $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "' AND password = '" . $encrypted_psswd . "'";
     $result = mysqli_query($link, $sql);
-    echo "result: {$result}";
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         echo "Login successful";
