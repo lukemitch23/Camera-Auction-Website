@@ -26,7 +26,7 @@ class Recovery{
         return True;
     }
 
-    public function email_user($email, $newpassword) {
+    public function email_user($email, $newpassword, $username) {
         $command = escapeshellcmd("python3 user_email.py {$email}, ,{$username}, {$newpassword}");
         $output = shell_exec($command);
         return $output;
@@ -36,7 +36,7 @@ class Recovery{
         $newpassword = $this->new_password();
         $encrypted_password = $this->encrypt_password($newpassword);
         $this->update_db($encrypted_uname, $encrypted_password);
-        $this->email_user($email, $newpassword);
+        $this->email_user($email, $newpassword, $uname);
         return "All done";
     }
 }
