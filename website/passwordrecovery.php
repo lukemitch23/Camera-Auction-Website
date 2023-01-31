@@ -6,16 +6,16 @@ class Recovery{
         return $new_password;
     }
 
-    public function encrypt_password() {
+    public function encrypt_password($new_password) {
         $raw_pass = $this->new_password();
         $ciphering = "AES-128-CTR";
         $iv_length = openssl_cipher_iv_length($ciphering);
         $options = 0;
         $encryption_iv = '1234567891011121';
         $encryption_key = '715655524310713512439317';
-        $encrypted_uname = openssl_encrypt($raw_pass, $ciphering,
+        $encrypted_password = openssl_encrypt($raw_pass, $ciphering,
                 $encryption_key, $options, $encryption_iv);
-        return $encrypted_uname;
+        return $encrypted_password;
     }
 
     public function update_db($encrypted_uname, $encrypted_password) {
@@ -26,17 +26,17 @@ class Recovery{
     }
 
     public function email_user($email, $newpassword) {
-        $command = escapeshellcmd('python3 user_email.py luke@helloluke.co.uk, luke');
+        $command = escapeshellcmd("python3 user_email.py {$email}, ,{$username}, {$newpassword}");
         $output = shell_exec($command);
         return $output;
     }
 
     public function commandcentre($email, $uname, $encrypted_uname) {
         $newpassword = $this->new_password();
-        $encrypted_password = $this->encrypt_password();
+        $encrypted_password = $this->encrypt_password($newpassword);
         $this->update_db($encrypted_uname, $encrypted_password);
         $this->email_user($email, $newpassword);
-        return "All done!";
+        return "All done";
     }
 }
 
