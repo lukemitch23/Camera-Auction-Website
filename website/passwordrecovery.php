@@ -16,7 +16,7 @@ class Recovery{
         $encryption_key = '715655524310713512439317';
         $encrypted_password = openssl_encrypt($raw_pass, $ciphering,
                 $encryption_key, $options, $encryption_iv);
-        echo $encrypted_password;
+        echo "\n {$encrypted_password}";
         return $encrypted_password;
     }
 
@@ -24,14 +24,14 @@ class Recovery{
         include 'db_connect.php';
         $sql = "UPDATE users SET password = '{$encrypted_password}' WHERE username = '{$encrypted_uname}'";
         $result = mysqli_query($link, $sql);
-        echo $result;
+        echo "\n {$result}";
         return True;
     }
 
     public function email_user($email, $newpassword, $username) {
         $command = escapeshellcmd("python3 user_email.py {$email}, ,{$username}, {$newpassword}");
         $output = shell_exec($command);
-        echo $output;
+        echo "\n {$output}";
         return $output;
     }
 
