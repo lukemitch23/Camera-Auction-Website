@@ -15,6 +15,7 @@ class Recovery{
         $encryption_key = '715655524310713512439317';
         $encrypted_password = openssl_encrypt($raw_pass, $ciphering,
                 $encryption_key, $options, $encryption_iv);
+        echo $encrypted_password;
         return $encrypted_password;
     }
 

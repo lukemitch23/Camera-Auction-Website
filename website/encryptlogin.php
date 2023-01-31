@@ -18,6 +18,8 @@ if(($uname == "") or ($psswd == "")){
     $encrypted_psswd = openssl_encrypt($psswd, $ciphering,
             $encryption_key, $options, $encryption_iv);
 
+    echo $encrypted_psswd;
+
 
     $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "' AND password = '" . $encrypted_psswd . "'";
     $result = mysqli_query($link, $sql);
