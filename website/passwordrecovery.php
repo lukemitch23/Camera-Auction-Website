@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+
 class Recovery{
     public function new_password() {
         $new_password = bin2hex(random_bytes(8));
@@ -19,6 +19,7 @@ class Recovery{
     }
 
     public function update_db($encrypted_uname, $encrypted_password) {
+        include 'db_connect.php';
         $sql = "UPDATE users SET password = '{$encrypted_password}' WHERE username = '{$encrypted_uname}'";
         $result = mysqli_query($link, $sql);
         return True;
@@ -41,6 +42,6 @@ class Recovery{
 
 $recoveryobject = new Recovery();
 $useremail = 'luke@helloluke.co.uk';
-$result = $recoveryobject->commandcentre($useremail, 'luke', 'luke');
+$result = $recoveryobject->commandcentre($useremail, 'luke', 'fkX8dg==');
 echo $result;
 ?>
