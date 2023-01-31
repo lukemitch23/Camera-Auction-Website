@@ -54,7 +54,8 @@ If($_POST){
             if($decryptemail == $_POST['email']){
                 $command = escapeshellcmd('python3 forgotpassword.py ' . $decryptemail . ' ' . $uname);
                 $output = shell_exec($command);
-                echo $output;
+                $passwordupdatesql = "UPDATE users SET password = '" . $output . "' WHERE username = '" . $encrypted_uname . "'";
+                $passwordupdateresult = mysqli_query($link, $passwordupdatesql);
                 echo "Email has been sent";
             } else {
                 echo "Email is incorrect";

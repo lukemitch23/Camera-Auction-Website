@@ -6,6 +6,7 @@ import subprocess
 def randompass():
     import random
     import string
+    global result_str
     letters = string.ascii_letters
     result_str = ''.join(random.choice(letters) for i in range(16))
     key = '715655524310713512439317'
@@ -36,7 +37,6 @@ def updatepassword(username, password):
 def send_email(to, username):
     password = randompass()
     print(password)
-    updatepassword(username, password)
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
         smtp.starttls()
@@ -44,12 +44,11 @@ def send_email(to, username):
 
         smtp.login('cameraauctionwebsite@gmail.com' ,'xrvkyxrmvhsufnzj')
         subject = 'One Time Password'
-        body = ('Your one time password is ' + password + ' \n Please enter this into the website to continue. \n If you did not request this password please ignore this email. \n Thank you very much,\n Camera Auction Website Team')
+        body = ('Your one time password is ' + result_str + ' \n Please enter this into the website to continue. \n If you did not request this password please ignore this email. \n Thank you very much,\n Camera Auction Website Team')
         footer = ('This email was sent by Camera Auction Website. \n If you have any questions please contact us at cameraauctionwebsite@gmail.com')
         msg = f'Subject: {subject}\n\n{body}\n\n{footer}'
 
         smtp.sendmail('cameraauctionwebsite@gmail.com', to, msg)
-    print("Mail sent")
 
 send_email(sys.argv[1], sys.argv[2])
 
