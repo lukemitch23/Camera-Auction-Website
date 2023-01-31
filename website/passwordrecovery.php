@@ -3,6 +3,7 @@
 class Recovery{
     public function new_password() {
         $new_password = bin2hex(random_bytes(8));
+        echo $new_password;
         return $new_password;
     }
 
@@ -23,12 +24,14 @@ class Recovery{
         include 'db_connect.php';
         $sql = "UPDATE users SET password = '{$encrypted_password}' WHERE username = '{$encrypted_uname}'";
         $result = mysqli_query($link, $sql);
+        echo $result;
         return True;
     }
 
     public function email_user($email, $newpassword, $username) {
         $command = escapeshellcmd("python3 user_email.py {$email}, ,{$username}, {$newpassword}");
         $output = shell_exec($command);
+        echo $output;
         return $output;
     }
 
