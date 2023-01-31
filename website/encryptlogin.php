@@ -19,6 +19,9 @@ if(($uname == "") or ($psswd == "")){
             $encryption_key, $options, $encryption_iv);
 
     echo $encrypted_psswd;
+    echo "                     ";
+    echo $encrypted_uname;
+
 
 
     $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "' AND password = '" . $encrypted_psswd . "'";
