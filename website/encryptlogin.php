@@ -17,7 +17,7 @@ if(($uname == "") or ($psswd == "")){
     $iv_length = openssl_cipher_iv_length($ciphering);
     $options = 0;
     $encryption_iv = '1234567891011121';
-    $encryption_key = '123';
+    $encryption_key = '6927926';
     $encrypted_uname = openssl_encrypt($uname, $ciphering,
             $encryption_key, $options, $encryption_iv);
     $encrypted_psswd = openssl_encrypt($psswd, $ciphering,
