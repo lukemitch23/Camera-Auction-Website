@@ -39,7 +39,7 @@ If($_POST){
         $iv_length = openssl_cipher_iv_length($ciphering);
         $options = 0;
         $encryption_iv = '1234567891011121';
-        $encryption_key = '715655524310713512439317';
+        $encryption_key = '6927926';
         $encrypted_uname = openssl_encrypt($uname, $ciphering,
                 $encryption_key, $options, $encryption_iv);
         $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "'";
@@ -52,8 +52,9 @@ If($_POST){
             $decryptemail = openssl_decrypt($email, $ciphering,
                     $encryption_key, $options, $encryption_iv);
             if($decryptemail == $_POST['email']){
-                $command = escapeshellcmd('python3 forgotpassword.py ' . $decryptemail . ' ' . $uname . ' ' . $encrypted_uname);
-                $output = shell_exec($command);
+                include_once 'passwordrecovery.php';
+                $recoveryobject = new Recovery();
+                $recoveryobject->commandcentre($decryptemail, $uname, $encrypted_uname);
                 echo "Email has been sent";
             } else {
                 echo "Email is incorrect";

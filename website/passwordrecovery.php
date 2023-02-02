@@ -43,9 +43,4 @@ class Recovery{
         return "All done";
     }
 }
-
-$recoveryobject = new Recovery();
-$useremail = 'luke@helloluke.co.uk';
-$result = $recoveryobject->commandcentre($useremail, 'luke', 'fkX8dg==');
-echo $result;
 ?>
