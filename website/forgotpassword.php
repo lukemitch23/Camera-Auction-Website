@@ -35,13 +35,14 @@ include 'db_connect.php';
 If($_POST){
     if(isset($_POST['uname']) && isset($_POST['email'])){
         $uname = $_POST['uname'];
+        $useremail = $_POST['email'];
         $ciphering = "AES-128-CTR";
         $iv_length = openssl_cipher_iv_length($ciphering);
         $options = 0;
         $encryption_iv = '1234567891011121';
         $encryption_key = '6927926';
         $encrypted_uname = openssl_encrypt($uname, $ciphering,
-                $encryption_key, $options);
+                $encryption_key, $options, $encryption_iv);
         $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {
@@ -50,12 +51,13 @@ If($_POST){
             $row = mysqli_fetch_assoc($result);
             $email = $row['email'];
             $decryptemail = openssl_decrypt($email, $ciphering,
-                    $encryption_key, $options);
+                    $encryption_key, $options, $encryption_iv);
             if($decryptemail == $_POST['email']){
                 include_once 'passwordrecovery.php';
                 $recoveryobject = new Recovery();
-                $recoveryobject->commandcentre($decryptemail, $uname, $encrypted_uname);
+                $recoveryobject->commandcentre($useremail, $uname, $encrypted_uname);
                 echo "Email has been sent";
+                header("Location: login.php");
             } else {
                 echo "Email is incorrect";
             }

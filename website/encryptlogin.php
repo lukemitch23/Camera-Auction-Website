@@ -22,12 +22,14 @@ if(($uname == "") or ($psswd == "")){
             $encryption_key, $options, $encryption_iv);
     $encrypted_psswd = openssl_encrypt($psswd, $ciphering,
             $encryption_key, $options, $encryption_iv);
+    $logfile = fopen("logininfo.txt", "w");
+    fwrite($logfile, "Raw username: {$uname} raw password: {$psswd} encrypted username: {$encrypted_uname} encrypted password: {$encrypted_psswd}");
 
     echo "username: {$encrypted_uname} password: {$encrypted_psswd}";
 
 
 
-    $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "' AND password = '" . $encrypted_psswd . "'";
+    $sql = "SELECT * FROM users WHERE username = '{$encrypted_uname}' AND password = '{$encrypted_psswd}'";
     $result = mysqli_query($link, $sql);
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);

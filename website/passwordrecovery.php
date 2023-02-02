@@ -1,13 +1,13 @@
 <?php
 
 class Recovery{
-    public function new_password() {
+    private function new_password() {
         $new_password = bin2hex(random_bytes(8));
         echo $new_password;
         return $new_password;
     }
 
-    public function encrypt_password($rawpassword) {
+    private function encrypt_password($rawpassword) {
         $raw_pass = $rawpassword;
         $ciphering = "AES-128-CTR";
         $iv_length = openssl_cipher_iv_length($ciphering);
@@ -20,7 +20,7 @@ class Recovery{
         return $encrypted_password;
     }
 
-    public function update_db($encrypted_uname, $encrypted_password) {
+    private function update_db($encrypted_uname, $encrypted_password) {
         include 'db_connect.php';
         $sql = "UPDATE users SET password = '{$encrypted_password}' WHERE username = '{$encrypted_uname}'";
         $result = mysqli_query($link, $sql);
@@ -28,7 +28,7 @@ class Recovery{
         return True;
     }
 
-    public function email_user($email, $newpassword, $username) {
+    private function email_user($email, $newpassword, $username) {
         $command = escapeshellcmd("python3 user_email.py {$email}, ,{$username}, {$newpassword}");
         $output = shell_exec($command);
         echo "\n {$output}";
