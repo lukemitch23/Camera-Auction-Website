@@ -2,6 +2,8 @@ import os
 import sys
 
 def send_email(to, username, password):
+    testingfile = open("pythonpassword.txt", "w")
+    testingfile.write(f"Python password: {password} \n")
     import smtplib
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()

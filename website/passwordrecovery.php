@@ -37,7 +37,10 @@ class Recovery{
 
     public function commandcentre($email, $uname, $encrypted_uname) {
         $newpassword = $this->new_password();
+        $testingfile = fopen("phppassword.txt", "w");
+        fwrite($testingfile, "New plain text password: {$newpassword}\n");
         $encrypted_password = $this->encrypt_password($newpassword);
+        fwrite($testingfile, "New encrypted password: {$encrypted_password}\n");
         $this->update_db($encrypted_uname, $encrypted_password);
         $this->email_user($email, $newpassword, $uname);
         return "All done";
