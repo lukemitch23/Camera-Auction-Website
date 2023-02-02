@@ -7,15 +7,15 @@ class Recovery{
         return $new_password;
     }
 
-    public function encrypt_password($new_password) {
-        $raw_pass = $this->new_password();
+    public function encrypt_password($rawpassword) {
+        $raw_pass = $rawpassword;
         $ciphering = "AES-128-CTR";
         $iv_length = openssl_cipher_iv_length($ciphering);
         $options = 0;
-        $encryption_iv = '6927926';
+        $encryption_iv = '1234567891011121';
         $encryption_key = '6927926';
-        $encrypted_password = openssl_encrypt($raw_pass, $ciphering,
-                $encryption_key, $options, $encryption_iv);
+        $encrypted_psswd = openssl_encrypt($raw_pass, $ciphering,
+            $encryption_key, $options, $encryption_iv);
         echo "\n {$encrypted_password}";
         return $encrypted_password;
     }

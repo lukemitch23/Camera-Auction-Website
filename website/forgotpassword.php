@@ -38,10 +38,10 @@ If($_POST){
         $ciphering = "AES-128-CTR";
         $iv_length = openssl_cipher_iv_length($ciphering);
         $options = 0;
-        $encryption_iv = '6927926';
+        $encryption_iv = '1234567891011121';
         $encryption_key = '6927926';
         $encrypted_uname = openssl_encrypt($uname, $ciphering,
-                $encryption_key, $options, $encryption_iv);
+                $encryption_key, $options);
         $sql = "SELECT * FROM users WHERE username = '" . $encrypted_uname . "'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {
@@ -50,7 +50,7 @@ If($_POST){
             $row = mysqli_fetch_assoc($result);
             $email = $row['email'];
             $decryptemail = openssl_decrypt($email, $ciphering,
-                    $encryption_key, $options, $encryption_iv);
+                    $encryption_key, $options);
             if($decryptemail == $_POST['email']){
                 include_once 'passwordrecovery.php';
                 $recoveryobject = new Recovery();
