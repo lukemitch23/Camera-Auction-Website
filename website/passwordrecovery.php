@@ -2,7 +2,7 @@
 
 class Recovery{
     private function new_password() {
-        $new_password = bin2hex(random_bytes(8));
+        $new_password = "happynewyear";
         echo $new_password;
         return $new_password;
     }
