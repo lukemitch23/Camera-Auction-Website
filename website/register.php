@@ -50,51 +50,6 @@
 <?php
 session_start();
 include 'db_connect.php';
-
-If($_POST){
-    if ($_POST['uname'] == "" or $_POST['psswd'] == "" or $_POST['email'] == "" or $_POST['cardnumber'] == "" or $_POST['cvc'] == "" or $_POST['expiry'] == ""){
-        echo "<div class='content'>
-                <h2> </h2>
-                <h2>One or more fields are empty</h2>
-            </div>";
-    } else {
-        if (($_POST['cardnumber'] > 1000000000000000) && ($_POST['cardnumber'] < 9999999999999999) && ($_POST['cvc'] > 100) && ($_POST['cvc'] < 999)){
-            ##check the user does not exist
-            $sql = "SELECT * FROM users WHERE username = '" . $_POST['uname'] . "'";
-            $result = mysqli_query($link, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                echo "User already exists";
-            } else {
-                $uname = $_POST['uname'];
-                $psswd = $_POST['psswd'];
-                $email = $_POST['email'];
-                $cardnumber = $_POST['cardnumber'];
-                $cvc = $_POST['cvc'];
-                $expiry = $_POST['expiry'];
-                $encryptpassword = password_hash($psswd, PASSWORD_DEFAULT);
-                $encryptemail = password_hash($email, PASSWORD_DEFAULT);
-                $encryptcardnumber = password_hash($cardnumber, PASSWORD_DEFAULT);
-                $encryptcvc = password_hash($cvc, PASSWORD_DEFAULT);
-                $encryptexpirey = password_hash($expiry, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO users (username, password, email, cardnumber, cvc, expire) VALUES ('$uname', '$encryptpassword', '$encryptemail', '$encryptcardnumber', '$encryptcvc', '$encryptexpirey')";
-                $result = mysqli_query($link, $sql);
-                if ($result) {
-                    echo "Registration successful";
-                    $sql = "SELECT * FROM users WHERE username = '$uname'";
-                    $result = mysqli_query($link, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    $_SESSION['username'] = $row['username'];
-                    sleep(5);
-                    header("Location: home.php");
-                } else {
-                    echo "Registration failed";
-                }
-            }
-        } else {
-            echo "The card number or CVC is incorrect";
-        }
-    }
-}
 ?>
 
 

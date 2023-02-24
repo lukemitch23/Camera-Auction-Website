@@ -62,7 +62,9 @@ If($_POST){
     } else {
         if (is_numeric($_POST['price'])){
             $image = $_FILES['image']['name'];
+            shell_exec("echo 'Image name: $image'");
             $image_tmp = $_FILES['image']['tmp_name'];
+            shell_exec("echo 'Image name: $image_tmp'");
             $image_ext = pathinfo($image, PATHINFO_EXTENSION);
             ## check that the image extension is valid
             if ($image_ext == "jpg" or $image_ext == "jpeg" or $image_ext == "png"){

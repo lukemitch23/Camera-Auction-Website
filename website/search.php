@@ -44,14 +44,14 @@ If($_POST){
                 $date1 = new DateTime("now");
                 $date2 = new DateTime($row['end_date']);
                 $interval = $date1->diff($date2);
-                $interval = $interval->format('%R%a days');
+                $new_interval = $interval->m." months, ".$interval->d." days ";
                 echo "<div class='listing'>
                 <div class='listinginfo'>
                     <h2>{$row['make']} {$row['model']}</h2>
                     <br>
                     <h3>£{$row['price']}</3>
                     <br>
-                    <p>Time left: $interval</p>
+                    <p>Time left: $new_interval</p>
                     <br>
                     <p>{$row['description']}</p>
                     <br>

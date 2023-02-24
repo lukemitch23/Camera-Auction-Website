@@ -61,6 +61,8 @@ $sql = "SELECT * FROM listings WHERE end_date <= CURRENT_DATE()";
 $result = mysqli_query($link, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+        $notifysoldcommand = escapeshellcmd('python3 notifysold.py ' . $row['listingID']);
+        $notifysoldoutput = shell_exec($notifysoldcommand);
         $listing_id = $row['listingID'];
         $sql = "DELETE FROM listings WHERE listingID = {$row['listingID']}";
         unlink($row['image']);
